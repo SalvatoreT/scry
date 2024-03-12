@@ -1,0 +1,17 @@
+[package]
+name = "scry"
+version = "0.1.0"
+edition = "2021"
+description = "Show an image with a marker approximately where the call comes from."
+license = "MIT"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+worker = "0.0.20"
+
+[profile.release]
+lto = true
+strip = true
+codegen-units = 1

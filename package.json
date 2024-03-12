@@ -1,0 +1,13 @@
+{
+  "name": "scry",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev"
+  },
+  "devDependencies": {
+    "wrangler": "^3.32.0"
+  },
+  "packageManager": "yarn@4.1.1"
+}

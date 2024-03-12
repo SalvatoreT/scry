@@ -1,0 +1,23 @@
+# IDE
+.idea
+.fleet
+
+# Wrangler
+.dev.vars
+.wrangler
+build
+
+# Rust
+/target
+Cargo.lock
+
+# https://yarnpkg.com/getting-started/qa
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+/node_modules
