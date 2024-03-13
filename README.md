@@ -3,7 +3,7 @@
 ## Setup
 
 ```shell
-cat 'MAPBOX_ACCESS_TOKEN=<access token>' >> .dev.vars
+echo 'MAPBOX_ACCESS_TOKEN=<access token>' >> .dev.vars
 ```
 
 ```shell
