@@ -2,6 +2,12 @@ use worker::*;
 
 #[event(fetch)]
 async fn main(req: Request, env: Env, _ctx: Context) -> Result<Response> {
+    if req.method() == Method::Get && req.path() == "/" {
+        let mut new_url = req.url()?;
+        new_url.set_path("/location.png");
+        return Response::redirect(new_url);
+    }
+
     let cf = req.cf().expect("Failed to get Cloudflare settings");
     let (lat, lon) = cf.coordinates().unwrap_or_default();
 
@@ -11,7 +17,7 @@ async fn main(req: Request, env: Env, _ctx: Context) -> Result<Response> {
     };
 
     let url = format!(
-        "https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/pin-l+555555({lon},{lat})/{lon},{lat},9,0/500x500@2x?access_token={access_token}"
+        "https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/pin-l+555555({lon},{lat})/{lon},{lat},9,0/500x500@2x"
     );
 
     let cache = Cache::default();
@@ -21,7 +27,7 @@ async fn main(req: Request, env: Env, _ctx: Context) -> Result<Response> {
         Err(_) => return Response::error("Cache lookup failed.", 500),
     }
 
-    let parsed_url = match Url::parse(&url) {
+    let parsed_url = match Url::parse_with_params(&url, &[("access_token", access_token)]) {
         Ok(url) => url,
         Err(_) => return Response::error("Failed to parse URL.", 500),
     };
