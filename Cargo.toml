@@ -1,8 +1,9 @@
 [package]
 name = "scry"
-version = "0.1.0"
+version = "1.0.0"
 edition = "2021"
 description = "Show an image with a marker approximately where the call comes from."
+repository = "https://github.com/SalvatoreT/scry"
 license = "MIT"
 
 [lib]

@@ -1,5 +1,9 @@
 # Scry
 
+Dynamically show where the image is loaded.
+
+![You are roughly here](https://scry.sal.dev/location.png)
+
 ## Setup
 
 ```shell
