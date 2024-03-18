@@ -33,9 +33,11 @@ async fn main(req: Request, env: Env, _ctx: Context) -> Result<Response> {
     };
 
     let mut response = match Fetch::Url(parsed_url).send().await {
-        Ok(res) => res,
+        Ok(mut res) => res.cloned().unwrap(),
         Err(_) => return Response::error("Failed to load the image.", 500),
     };
+
+    response.headers_mut().set("Cache-Control", "no-cache").unwrap();
 
     if cache.put(&url, response.cloned().unwrap()).await.is_err() {
         // Logging the error might be helpful here, but we choose to ignore it as per the user's scenario.

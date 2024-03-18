@@ -10,7 +10,7 @@ license = "MIT"
 crate-type = ["cdylib"]
 
 [dependencies]
-worker = "0.0.20"
+worker = "0.0.21"
 
 [profile.release]
 lto = true
